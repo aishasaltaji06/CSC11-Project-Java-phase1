@@ -2,14 +2,14 @@ import java.util.Scanner;
 public class Encryption {
     static Scanner console = new Scanner(System.in); 
     public static void main(String[] args){
-    
 
+        while(true){
         //Default variables
 
         String PIN = "0000";
         boolean Status = true;
-        boolean Authenticated = false;
-        boolean KeyIsValid = false;
+        boolean Authenticated = true;
+        boolean KeyIsValid = true;
         String OriginalKey_Attempt = null;
         String CodeKey_Attempt = null;
         String OriginalKey = null;
@@ -17,7 +17,7 @@ public class Encryption {
         String CurrentSentence = null;
         String pinAttempt = null;
         boolean isActive = true;
-        
+
 
 
 
@@ -27,22 +27,33 @@ public class Encryption {
         PIN = console.next();
         char first_num = PIN.charAt(0);
 
-        // Check for wrong type input
+        // Check for wrong type input hhhh
 
-        for (int i = 0; i < PIN.length(); i++)
-            if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9')
+        Status = true;
+        for (int i = 0; i < PIN.length(); i++){
+
+            if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9') {
                 Status = false;
-            else
-                Status = true;
-        
-                    
-            
+                break;
+            }
+        } 
+
+
 
         while (first_num == '0' || PIN.length() != 4 || Status == false)
         {
            System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
            PIN = console.next(); 
-           
+           first_num = PIN.charAt(0);
+
+           Status = true;
+           for (int i = 0; i < PIN.length(); i++){
+
+               if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9') {
+                   Status = false;
+                   break;
+               }
+           }
         }
 
 
@@ -53,8 +64,8 @@ public class Encryption {
 
 
         // Show Display Menu and ask for the number
-    
-        
+
+
         System.out.println("Please choosen number from the following options: \n 1. Set/Change the key \n 2. Display Key \n 3. Enter a sentence \n 4. Display Current Sentence \n 5. Encryption \n 6. Decryption \n 7. Exit System");
         int optionNum = console.nextInt();
 
@@ -63,7 +74,6 @@ public class Encryption {
         switch(optionNum){
 
             case 1:            // Set/Change the key: needs a PIN
-                do { 
                     System.out.println("PIN required, please enter your PIN: ");
                     pinAttempt = console.next();
                     if(pinAttempt.equals(PIN)) {
@@ -71,8 +81,8 @@ public class Encryption {
                         Authenticated=true;
                     } else {
                         System.out.println("Access Denied");
+                        break;
                     }
-                } while(!Authenticated);
                 do {
                     System.out.println("Enter the original key: ");
                     OriginalKey_Attempt = console.next();
@@ -82,6 +92,8 @@ public class Encryption {
                     if (OriginalKey_Attempt.length() != CodeKey_Attempt.length()) {
                         System.out.println("The keys are not the same length");
                         KeyIsValid = false;
+                        break;
+
                     }
                     if(KeyIsValid){
                         for(int j=0; j<CodeKey_Attempt.length(); j++) {
@@ -99,26 +111,35 @@ public class Encryption {
                         System.out.println("The keys have been set");
                         CurrentSentence=null;
                     } else {
-                        System.out.println("The keys validation failed, please try again");
+                        System.out.println("The keys validation failed, enter 'R' if you want to retry or any other key to return to the main menu");
+                        String retry = console.next();
+                        if(!retry.equals("R")){
+                            break;
+                        }
                     }
                 } while(!KeyIsValid);
                 break;
 
 
             case 2: // Display Key : needs a PIN    
+                break;
 
 
             case 3: // Enter a sentence
+                break;
 
 
             case 4: // Display Current Sentence
+                break;
 
 
             case 5: // Encryption
+                break;
 
 
 
             case 6: // Decryption
+                break;
 
 
 
@@ -132,28 +153,8 @@ public class Encryption {
                 System.out.println("Your number is a mismatch; please choose a number from 1 to 7");
                 optionNum = console.nextInt();
 
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+        if (!isActive) break;
+        }
     }
 }
