@@ -70,7 +70,7 @@ public class Encryption {
                         System.out.println("Access Granted");
                         Authenticated=true;
                     } else {
-                        System.out.println("Access Denied, return to the main menu");
+                        System.out.println("Access Denied");
                     }
                 } while(!Authenticated);
                 do {
