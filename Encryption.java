@@ -21,6 +21,7 @@ public class Encryption {
         {
            System.out.println("Enter a PIN of 4 digits (First digit can't be 0): ");
            PIN = console.nextInt(); 
+           PIN_as_string = PIN + "";
         }
 
 
