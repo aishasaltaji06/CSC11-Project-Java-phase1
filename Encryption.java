@@ -73,11 +73,11 @@ public class Encryption {
                     while(!Authenticated);
                     do {
                         System.out.println("Enter the original key: ");
-                        OriginalKey = console.next();
+                        OriginalKey_Attempt = console.next();
                         System.out.println("Enter the code key: ");
-                        CodeKey = console.next();
+                        CodeKey_Attempt = console.next();
                         KeyIsValid = true;
-                        if (OriginalKey.length() != CodeKey.length()) {
+                        if (OriginalKey_Attempt.length() != CodeKey_Attempt.length()) {
                             System.out.println("The keys are not the same length");
                             KeyIsValid = false;}
                         if(KeyIsValid)
