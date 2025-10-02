@@ -6,7 +6,16 @@ public class Encryption {
 
         //Default variables
 
-        int PIN = "0000";
+        String PIN = "0000";
+        boolean Status = true;
+        boolean Authenticated = false;
+        boolean KeyIsValid = false;
+        String OriginalKey = null;
+        String CodeKey = null;
+        String CurrentSentence = null;
+        String pinAttempt = null;
+        boolean isActive = true;
+        
 
 
 
@@ -18,7 +27,7 @@ public class Encryption {
 
         // Check for wrong type input
 
-        for (int i = 0; i < PIN_as_string.length(); i++)
+        for (int i = 0; i < PIN.length(); i++)
             if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9')
                 Status = false;
             else
@@ -30,7 +39,7 @@ public class Encryption {
         while (first_num == '0' || PIN.length() != 4 || Status == false)
         {
            System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
-           PIN = console.nextInt(); 
+           PIN = console.next(); 
            
         }
 
@@ -42,22 +51,41 @@ public class Encryption {
 
 
         // Show Display Menu and ask for the number
-
-
-
-
-
-        System.out.println()
+    
+        
+        System.out.println("Please choosen number from the following options:/n 1. Set/Change the key \n 2. Display Key \n 3. Enter a sentence \n 4. Display Current Sentence \n 5. Encryption \n 6. Decryption \n");
         int optionNum = console.nextInt();
 
         // Cases:
 
         switch(optionNum){
 
-            case 1: // Set/Change the key
+            case 1:            // Set/Change the key: needs a PIN
+                do { 
+                    System.out.println("PIN required, please enter your PIN: ");
+                    pinAttempt = console.next();
+                    if(pinAttempt.equals(PIN)) {
+                        System.out.println("Access Granted");
+                        Authenticated=true;
+                    } else {
+                        System.out.println("Access Denied");
+                    }
+                } while(!Authenticated);
+                do {
+                    System.out.println("Enter the original key: ");
+                    OriginalKey = console.next();
+                    System.out.println("Enter the code key: ");
+                    CodeKey = console.next();
+                    if (OriginalKey.length() == CodeKey.length()) {
+                        KeyIsValid = true;
+                    } else {
+                        System.out.println("The keys are not the same length");
+                    }
+                } while(!KeyIsValid);
+                break;
 
 
-            case 2: // Display Key
+            case 2: // Display Key : needs a PIN    
 
 
             case 3: // Enter a sentence
@@ -75,6 +103,9 @@ public class Encryption {
 
 
             case 7: // Exit System
+                System.out.println("Exiting the system....Goodbye!");
+                isActive = false;
+                break;
 
 
             default:
