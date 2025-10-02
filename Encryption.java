@@ -6,7 +6,7 @@ public class Encryption {
 
         //Default variables
 
-        String PIN = "";
+        int PIN = "0000";
 
 
 
@@ -17,8 +17,8 @@ public class Encryption {
         char first_num = PIN.charAt(0);
 
         // Check for wrong type input
-        boolean Status = true;
-        for (int i = 0; i < PIN.length(); i++)
+
+        for (int i = 0; i < PIN_as_string.length(); i++)
             if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9')
                 Status = false;
             else
@@ -30,8 +30,8 @@ public class Encryption {
         while (first_num == '0' || PIN.length() != 4 || Status == false)
         {
            System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
-           PIN = console.next(); 
-           first_num = PIN.charAt(0);
+           PIN = console.nextInt(); 
+           
         }
 
 
