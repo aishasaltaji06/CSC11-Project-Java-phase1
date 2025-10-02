@@ -12,6 +12,8 @@ public class Encryption {
         boolean KeyIsValid = false;
         String OriginalKey_Attempt = null;
         String CodeKey_Attempt = null;
+        String OriginalKey = null;
+        String CodeKey = null;
         String CurrentSentence = null;
         String pinAttempt = null;
         boolean isActive = true;
@@ -53,7 +55,7 @@ public class Encryption {
         // Show Display Menu and ask for the number
     
         
-        System.out.println("Please choosen number from the following options:/n 1. Set/Change the key \n 2. Display Key \n 3. Enter a sentence \n 4. Display Current Sentence \n 5. Encryption \n 6. Decryption \n");
+        System.out.println("Please choosen number from the following options: \n 1. Set/Change the key \n 2. Display Key \n 3. Enter a sentence \n 4. Display Current Sentence \n 5. Encryption \n 6. Decryption \n 7. Exit System");
         int optionNum = console.nextInt();
 
         // Cases:
@@ -68,22 +70,39 @@ public class Encryption {
                         System.out.println("Access Granted");
                         Authenticated=true;
                     } else {
-                        System.out.println("Access Denied");
-                    break;}
-                    while(!Authenticated);
-                    do {
-                        System.out.println("Enter the original key: ");
-                        OriginalKey_Attempt = console.next();
-                        System.out.println("Enter the code key: ");
-                        CodeKey_Attempt = console.next();
-                        KeyIsValid = true;
-                        if (OriginalKey_Attempt.length() != CodeKey_Attempt.length()) {
-                            System.out.println("The keys are not the same length");
-                            KeyIsValid = false;}
-                        if(KeyIsValid)
-                      } while(!KeyIsValid);
+                        System.out.println("Access Denied, return to the main menu");
+                    }
+                } while(!Authenticated);
+                do {
+                    System.out.println("Enter the original key: ");
+                    OriginalKey_Attempt = console.next();
+                    System.out.println("Enter the code key: ");
+                    CodeKey_Attempt = console.next();
+                    KeyIsValid = true;
+                    if (OriginalKey_Attempt.length() != CodeKey_Attempt.length()) {
+                        System.out.println("The keys are not the same length");
+                        KeyIsValid = false;
+                    }
+                    if(KeyIsValid){
+                        for(int j=0; j<CodeKey_Attempt.length(); j++) {
+                            char ch=CodeKey_Attempt.charAt(j);
+                            if(OriginalKey_Attempt.indexOf(ch) == -1){
+                                System.out.println("Validation failed: Character " + ch + " from code key is not in the original key");
+                                KeyIsValid = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(KeyIsValid){
+                        OriginalKey = OriginalKey_Attempt;
+                        CodeKey = CodeKey_Attempt;
                         System.out.println("The keys have been set");
-                    
+                        CurrentSentence=null;
+                    } else {
+                        System.out.println("The keys validation failed, please try again");
+                    }
+                } while(!KeyIsValid);
+                break;
 
 
             case 2: // Display Key : needs a PIN    
