@@ -10,8 +10,8 @@ public class Encryption {
         boolean Status = true;
         boolean Authenticated = false;
         boolean KeyIsValid = false;
-        String OriginalKey = null;
-        String CodeKey = null;
+        String OriginalKey_Attempt = null;
+        String CodeKey_Attempt = null;
         String CurrentSentence = null;
         String pinAttempt = null;
         boolean isActive = true;
@@ -69,20 +69,21 @@ public class Encryption {
                         Authenticated=true;
                     } else {
                         System.out.println("Access Denied");
-                    }
-                } while(!Authenticated);
-                do {
-                    System.out.println("Enter the original key: ");
-                    OriginalKey = console.next();
-                    System.out.println("Enter the code key: ");
-                    CodeKey = console.next();
-                    if (OriginalKey.length() == CodeKey.length()) {
+                    break;}
+                    while(!Authenticated);
+                    do {
+                        System.out.println("Enter the original key: ");
+                        OriginalKey = console.next();
+                        System.out.println("Enter the code key: ");
+                        CodeKey = console.next();
                         KeyIsValid = true;
-                    } else {
-                        System.out.println("The keys are not the same length");
-                    }
-                } while(!KeyIsValid);
-                break;
+                        if (OriginalKey.length() != CodeKey.length()) {
+                            System.out.println("The keys are not the same length");
+                            KeyIsValid = false;}
+                        if(KeyIsValid)
+                      } while(!KeyIsValid);
+                        System.out.println("The keys have been set");
+                    
 
 
             case 2: // Display Key : needs a PIN    
