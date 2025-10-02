@@ -6,22 +6,32 @@ public class Encryption {
 
         //Default variables
 
-        int PIN = 0000;
+        String PIN = "";
 
 
 
         // Setting the PIN by the user
 
-        System.out.println("Enter a PIN of 4 digits (First digit can't be 0): ");
-        PIN = console.nextInt();
-        String PIN_as_string = PIN + "";
-        char first_num = PIN_as_string.charAt(0);
+        System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
+        PIN = console.next();
+        char first_num = PIN.charAt(0);
 
-        while (first_num == '0' || PIN_as_string.length() != 4 )
+        // Check for wrong type input
+        boolean Status = true;
+        for (int i = 0; i < PIN.length(); i++)
+            if (PIN.charAt(i) < '0' || PIN.charAt(i) > '9')
+                Status = false;
+            else
+                Status = true;
+        
+                    
+            
+
+        while (first_num == '0' || PIN.length() != 4 || Status == false)
         {
-           System.out.println("Enter a PIN of 4 digits (First digit can't be 0): ");
-           PIN = console.nextInt(); 
-           PIN_as_string = PIN + "";
+           System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
+           PIN = console.next(); 
+           first_num = PIN.charAt(0);
         }
 
 
@@ -37,7 +47,7 @@ public class Encryption {
 
 
 
-
+        System.out.println()
         int optionNum = console.nextInt();
 
         // Cases:
