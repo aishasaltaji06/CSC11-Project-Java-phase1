@@ -21,9 +21,9 @@ args = "Java Application"
 name = "Java Application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "java Encryption"
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "javac Encryption.java && java Encryption"
