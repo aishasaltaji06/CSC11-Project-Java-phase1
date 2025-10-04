@@ -9,7 +9,7 @@ public class Encryption {
       String PIN = "0000";
       boolean Status = true;
       boolean Authenticated = true;
-      boolean KeyIsValid=true;
+      boolean KeyIsValid=false;
       String OriginalKey_Attempt = null;
       String CodeKey_Attempt = null;
       String OriginalKey = null;
@@ -24,7 +24,7 @@ public class Encryption {
 
       while (true)
       {
-         System.out.println("Please enter a PIN of only 4 digits (First digit can't be 0): ");
+         System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
          PIN = console.next(); 
          first_num = PIN.charAt(0);
          //check first character and length
@@ -89,6 +89,9 @@ public class Encryption {
                      KeyIsValid=false;
                      break;
                   }
+                  else{ 
+                  KeyIsValid=true;
+                  continue;}
                }
 
                if(KeyIsValid==true)
@@ -112,17 +115,27 @@ public class Encryption {
                   System.out.println("Access Denied");
                   break;
                }
-               if(OriginalKey!=null||CodeKey!=null)
+               if(OriginalKey!=null||CodeKey!=null){
                   System.out.printf("Your original key is: %s %nYour code key is: %s%n",OriginalKey,CodeKey);
+                  break;}
                else {System.out.println("The key has not been set, returning to main menu");
                   break;}
 
 
             case 3: // Enter a sentence
+               System.out.println("Please enter your sentence");
+               console.nextLine();
+               CurrentSentence=console.nextLine();
+               break;
 
 
-
-            case 4: // Display Current Sentence
+            case 4: // Display Current Sentence, need PIN
+               if(CurrentSentence!=null){
+               System.out.printf("your current sentence is: %s.%n ",CurrentSentence);
+                break;}
+                else {
+                System.out.println("you have not entered a sentence yet,returning to main menu.");
+                break;}
 
 
             case 5: // Encryption
