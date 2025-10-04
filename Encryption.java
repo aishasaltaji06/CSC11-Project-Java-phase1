@@ -24,7 +24,7 @@ public class Encryption {
 
       while (true)
       {
-         System.out.println("Enter a PIN of only 4 digits (First digit can't be 0) test11111: ");
+         System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
          PIN = console.next(); 
          first_num = PIN.charAt(0);
          //check first character and length
@@ -139,10 +139,56 @@ public class Encryption {
 
 
             case 5: // Encryption
+               if (OriginalKey == null || CodeKey == null) {
+                  System.out.println("The keys have not been set, Please set the keys first.");
+                  break;
+               }
+
+               if (CurrentSentence == null) {
+                  System.out.println("The sentence has not been entered, Please enter a sentence first.");
+                  break;
+               }
+               String encryptedSentence = "";
+               for (int i = 0; i < CurrentSentence.length(); i++) {
+                  char currentChar = CurrentSentence.charAt(i);
+                  int index = OriginalKey.indexOf(currentChar);
+                  if (index != -1) {
+                     encryptedSentence += CodeKey.charAt(index);
+                  } else {
+                     encryptedSentence += currentChar;
+                  }
+               }
+               System.out.println("Encrypted Sentence: " + encryptedSentence);
+               break;
+               
 
 
 
             case 6: // Decryption
+               if (OriginalKey == null || CodeKey == null) {
+                  System.out.println("The keys have not been set, Please set the keys first (option 1).");
+                  break;
+               }
+               if (CurrentSentence == null) {
+                  System.out.println("The sentence has not been entered, Please enter a sentence first (option 3).");
+                  break;
+               }
+               String decryptedSentence = "";
+               for (int i = 0; i < CurrentSentence.length(); i++) {
+                  char currentChar = CurrentSentence.charAt(i);
+                  int index = CodeKey.indexOf(currentChar);
+                  if (index != -1) {
+                     decryptedSentence += OriginalKey.charAt(index);
+                     }
+                  else {
+                     decryptedSentence += currentChar;
+                  }
+               }
+               System.out.println("Decrypted Sentence: " + decryptedSentence);
+               break;
+               
+                  
+                  
 
 
 
