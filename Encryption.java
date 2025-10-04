@@ -24,7 +24,7 @@ public class Encryption {
 
       while (true)
       {
-         System.out.println("Enter aa PIN of only 4 digits (First digit can't be 0): ");
+         System.out.println("Please enter a PIN of only 4 digits (First digit can't be 0): ");
          PIN = console.next(); 
          first_num = PIN.charAt(0);
          //check first character and length
@@ -87,15 +87,18 @@ public class Encryption {
                   if(OriginalKey_Attempt.indexOf(ch) == -1){
                      System.out.println("Validation failed: Character " + ch + " from code key is not in the original key");
                      KeyIsValid=false;
-                     break;}
+                     break;
                   }
+               }
 
-               if(KeyIsValid==true){
-               OriginalKey = OriginalKey_Attempt;
-               CodeKey = CodeKey_Attempt;
-               System.out.println("The keys have been set");
+               if(KeyIsValid==true)
+               {
+                  OriginalKey = OriginalKey_Attempt;
+                  CodeKey = CodeKey_Attempt;
+                  System.out.println("The keys have been set");
                //check if required to keep or only demonstrate the special case
-               CurrentSentence=null;}
+                  CurrentSentence=null;
+               }
                break;
 
 
@@ -112,7 +115,7 @@ public class Encryption {
                if(OriginalKey!=null||CodeKey!=null)
                   System.out.printf("Your original key is: %s %nYour code key is: %s%n",OriginalKey,CodeKey);
                else {System.out.println("The key has not been set, returning to main menu");
-               break;}
+                  break;}
 
 
             case 3: // Enter a sentence
