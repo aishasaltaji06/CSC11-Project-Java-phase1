@@ -24,7 +24,7 @@ public class Encryption {
 
       while (true)
       {
-         System.out.println("Enter a PIN of only 4 digits (First digit can't be 0): ");
+         System.out.println("Enter a PIN of only 4 digits (First digit can't be 0) test11111: ");
          PIN = console.next(); 
          first_num = PIN.charAt(0);
          //check first character and length
